@@ -1,0 +1,18 @@
+
+.img_fix{
+    height: 238px;
+    object-fit: cover;
+    width: 100%;
+}
+  
+.owl-item {
+    min-height: 413px;
+}
+.h_full{
+    height: 100%;
+}
+.img_class {
+    width: 200px !important;
+    height: 233px !important;
+    object-fit: cover;
+}

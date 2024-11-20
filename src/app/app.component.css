@@ -1,0 +1,10 @@
+.spacer{
+    height: 120px;
+}
+
+footer{
+    background: linear-gradient(45deg, #f7f7ff, #fdeaec);
+}
+.my-hidden{
+    display: none;
+}
