@@ -1,7 +1,6 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID, OnInit } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { isPlatformBrowser, SlicePipe } from '@angular/common';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+
 import { GlobalService } from '../../services/global.service';
 import { forkJoin } from 'rxjs';
 
@@ -10,73 +9,21 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-homr',
   standalone: true,
-  imports: [ CarouselModule, SlicePipe],
-  
+  imports: [  SlicePipe],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './homr.component.html',
   styleUrl: './homr.component.css'
 })
 export class HomrComponent implements OnInit{
+  isBrowser: boolean;
   notLoaded:boolean =true
   latestList:any
   paidList:any
 
 
-  customOptions: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
-    margin: 20,
-    dots: false,
-    navSpeed: 700,
-    navText: ['<', '>'],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
-    },
-    nav: true
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private global: GlobalService) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
-
-  customOptionsAds: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
-    margin: 20,
-    dots: false,
-    autoplay:true,
-    smartSpeed: 1000,
-    autoplayTimeout:2000,
-    navSpeed: 1000,
-    navText: ['<', '>'],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 2
-      },
-      940: {
-        items: 3
-      }
-    },
-    nav: true
-  }
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private global: GlobalService) {}
 
  
   ngOnInit(): void {
@@ -88,8 +35,8 @@ export class HomrComponent implements OnInit{
     .subscribe({
       next: (res: any) => {
         this.latestList = res.allList.data
-        // this.paidList = res.paidList.data
-        
+        this.paidList = res.paidList.data
+        // console.log (this.latestList)
       const filterData = this.latestList.filter((m:any)=>{
         // console.log(m.marketing)
         return m.marketing
@@ -109,6 +56,23 @@ export class HomrComponent implements OnInit{
     
   }
 
+  getBreakpoints() {
+    return {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+      },
+    };
+  }
+  
 
   
 }

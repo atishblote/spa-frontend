@@ -35,18 +35,20 @@ export class SpaCityComponent {
     this.global.getWithToken(`locations?filters[slug][$eq]=${this.slug}&populate[0]=all_listings&populate[1]=all_listings.areas&populate[2]=all_listings.feature&populate[3]=all_listings.service_category`).subscribe({
       next: (res: any) => {
         console.log(res);
-        this.location = res.data[0].title
-        this.getList = res.data[0].all_listings
-        this.notLoaded = false
-       
-        // this.isLoaded = true;
-        
-        const filterData = this.getList.filter((m:any)=>{
-          return m.service_category.slug = this.category
+        if(res.data.length != 0){
+          this.location = res?.data[0]?.title
+          this.getList = res?.data[0]?.all_listings
+          this.notLoaded = false
+         
+          // this.isLoaded = true;
           
-        })
-        this.latestList = filterData
-        console.log(this.latestList);
+          const filterData = this.getList.filter((m:any)=>{
+            return m.service_category.slug = this.category
+            
+          })
+          this.latestList = filterData
+          console.log(this.latestList);
+        }
       },
       error: (err: any) => {
         console.log(err.error.error.message);
