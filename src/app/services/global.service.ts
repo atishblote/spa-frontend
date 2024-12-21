@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalService {
 
-  baseUrl:string= 'https://spa-strapi-1.onrender.com/api'
+  baseUrl:string= 'https://spa-strapi-3.onrender.com/api'
   // baseUrl:string= 'https://api.cricfootbook.com'
 
-  globalToken:string = "e8900ca2bb7ea29e81ccccb83aea824a19e5703cadac04de463cf50e85cc681f5ff85495c9d8136e5c14e30c370711ec6f9e5b78f9cbd1b746c0dea2f61f894fcb5318888f70eb87e818fad6f2a23f862b218ce2670497e98d8e3304e107e69d9f97a177dfde487280c1b98412d24a8c3a479c67e59072ce9fcca8ea3f3058ae"
+  globalToken:string = "d8d6220c854dd6ff16cbe2394ef08af85924c74c6497b73964295e6f2918214c299d2a78858a8197dd351032d3afc1518e878732e61e29247125047969a00542da24fcc8c9970f52b44b246e832304b81e3bc0dbb8a56283b43da58bfc42716bf80e9b3e09b3ac16f8b9505c5df88f07eeb5f5921eb477f6860e4e660b1f07d6";
 
   apiKey:any
 
